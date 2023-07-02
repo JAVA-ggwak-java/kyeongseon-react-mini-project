@@ -4,42 +4,30 @@ import './App.css';
 import Form from "./components/Form";
 import List from "./components/List";
 
-// const initiaMyDiary = localStorage.getItem("Diary") ? JSON.parse(localStorage.getItem("Diary")):[];
+const initiaMyDiary = localStorage.getItem("Diary") ? JSON.parse(localStorage.getItem("Diary")):[];
 
 function App() {
 
-  // const[DiaryData, setDiaryData] = useState(initiaMyDiary);
-  let[DiaryData, setDiaryData] = useState([
-    // {
-    //   id:"1",
-    //   date:"7/1",
-    //   content: "오늘은 피부과를 갔다"
-    // },
-    // {
-    //   id:"2",
-    //   date:"7/2",
-    //   content: "오늘은 용산를 갔다"
-    // }
-
-  ]);
+  const[DiaryData, setDiaryData] = useState(initiaMyDiary);
+  // const[DiaryData, setDiaryData] = useState([]);
   const[value, setValue] = useState("");
 
-
-  
-  // const handleClick = useCallback((id) => {
-  //   let newDiaryData = DiaryData.filter((data) => data.id !== id); //id가 같다면 삭제하도록
-  //   setDiaryData(newDiaryData);
-  //   // console.log('newDiaryData',newDiaryData);
-  //   // localStorage.setItem('Diary', JSON.stringify(newDiaryData));
-  //   },
-  //   [DiaryData] 
-  //   )
-  const handleClick = (id)=>{
-    console.log("handleClick", id);
-    let newDiaryData = DiaryData.filter((data) => data.id !== id);
+  //List에서 handleClick를 사용하기 때문에 리랜더링발생 --> 성능저하
+  //useCallback() : DiaryData가 변하지 않는다면 함수는 새로 생성되지 않음(새로 생성되지 않으므로 메모리에 새로 할당되지 않고 동일 참조값을 사용)
+  const handleClick = useCallback((id) => {
+    let newDiaryData = DiaryData.filter((data) => data.id !== id); //id가 같다면 삭제하도록
     setDiaryData(newDiaryData);
-    console.log('newDiaryData', newDiaryData);
-  }
+    console.log('newDiaryData',newDiaryData);
+    localStorage.setItem('Diary', JSON.stringify(newDiaryData));
+    },
+    [DiaryData] 
+    )
+  // const handleClick = (id)=>{
+  //   console.log("handleClick", id);
+  //   let newDiaryData = DiaryData.filter((data) => data.id !== id);
+  //   setDiaryData(newDiaryData);
+  //   console.log('newDiaryData', newDiaryData);
+  // }
 
     const handleSubmit = (e) =>{
       e.preventDefault();
@@ -58,7 +46,7 @@ function App() {
       setDiaryData(prev => 
         [...prev, newDiary]
         );
-      //   localStorage.setItem('DiaryData', JSON.stringify([...DiaryData, newDiary]));
+        localStorage.setItem('DiaryData', JSON.stringify([...DiaryData, newDiary]));
       setValue("");
     }
   
