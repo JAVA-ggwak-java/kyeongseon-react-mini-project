@@ -3,11 +3,12 @@ import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 import Form from "./components/Form";
 import List from "./components/List";
-
+//만약 localStorage에 key(Diary)로 저장된 value가 있을 경우 그것을 가져오도록 
+//텍스트 형태로 저장되어있으므로 JSON.parse()로 바꿔줌
 const initiaMyDiary = localStorage.getItem("Diary") ? JSON.parse(localStorage.getItem("Diary")):[];
 
 function App() {
-
+  console.log('App Component')
   const[DiaryData, setDiaryData] = useState(initiaMyDiary);
   // const[DiaryData, setDiaryData] = useState([]);
   const[value, setValue] = useState("");
@@ -18,6 +19,9 @@ function App() {
     let newDiaryData = DiaryData.filter((data) => data.id !== id); //id가 같다면 삭제하도록
     setDiaryData(newDiaryData);
     console.log('newDiaryData',newDiaryData);
+    //setDiaryData를 이용해서 DiaryData를 바꿔줄 떄, localStorage도 같이 바꿔주기
+    //객체나 배열을 저장해줄시에는 JSON.stringify를 이용해서 텍스트로 변환해준 후 저장
+    //setItem('key', 'value') -> value가 객체일때 Object로 저장되므로 아래와 같이 JSON.stringify()를 사용해주기
     localStorage.setItem('Diary', JSON.stringify(newDiaryData));
     },
     [DiaryData] 
@@ -46,7 +50,8 @@ function App() {
       setDiaryData(prev => 
         [...prev, newDiary]
         );
-        localStorage.setItem('DiaryData', JSON.stringify([...DiaryData, newDiary]));
+        //원래있던 DiaryData를 넣어준 후 newDiary를 넣어줌
+        localStorage.setItem('Diary', JSON.stringify([...DiaryData, newDiary]));
       setValue("");
     }
   

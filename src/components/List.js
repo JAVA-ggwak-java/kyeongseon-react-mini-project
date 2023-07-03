@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 
 const List = ({handleClick, DiaryData, setDiaryData}) => {
-
+  console.log('List Component')
   console.log('DiaryData : ', DiaryData);
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState("");
@@ -22,7 +22,7 @@ const List = ({handleClick, DiaryData, setDiaryData}) => {
       return data;
     })
     setDiaryData(newDiaryData);
-    localStorage.setItem('DiaryData', JSON.stringify(newDiaryData));
+    localStorage.setItem('Diary', JSON.stringify(newDiaryData));
     setIsEditing(false);
   }
 
@@ -81,8 +81,7 @@ const List = ({handleClick, DiaryData, setDiaryData}) => {
         </div>
         ))}
       </div>
-    )
-  }
+    )}
 }
 
 export default List
