@@ -7,6 +7,8 @@ const List = ({handleClick, DiaryData, setDiaryData}) => {
   const [editedContent, setEditedContent] = useState("");
   const [id, setId] = useState("");
   const [date, setDate] = useState("");
+  //함수를 생성해서 
+  const hanldeEdit = (data) => {setIsEditing(true); setId(data.id); setEditedContent(data.content); setDate(data.date)}
   //글 수정
   const handleEditChange = (event) => {
     setEditedContent(event.target.value);
@@ -71,7 +73,7 @@ const List = ({handleClick, DiaryData, setDiaryData}) => {
             {data.content} 
           </span>
           <div className="w-1/6" >
-          <button className="w-1/2" onClick={() => {setIsEditing(true); setId(data.id); setEditedContent(data.content); setDate(data.date)}}>
+          <button className="w-1/2" onClick={() => hanldeEdit(data)}>
             수정
           </button>
           <button  onClick={() => handleClick(data.id)}>
@@ -84,4 +86,4 @@ const List = ({handleClick, DiaryData, setDiaryData}) => {
     )}
 }
 
-export default List
+export default React.memo(List);
