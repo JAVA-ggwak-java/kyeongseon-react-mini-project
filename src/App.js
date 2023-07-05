@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 import Form from "./components/Form";
 import List from "./components/List";
+import Lists from "./components/Lists"
 //만약 localStorage에 key(Diary)로 저장된 value가 있을 경우 그것을 가져오도록 
 //텍스트 형태로 저장되어있으므로 JSON.parse()로 바꿔줌
 const initiaMyDiary = localStorage.getItem("Diary") ? JSON.parse(localStorage.getItem("Diary")):[];
@@ -63,7 +64,7 @@ function App() {
           <h1>한줄 일기</h1>
         </div>
         <Form handleSubmit={handleSubmit} value={value} setValue={setValue}/>
-        <List handleClick={handleClick} DiaryData={DiaryData} setDiaryData={setDiaryData}/>
+        <Lists handleClick={handleClick} DiaryData={DiaryData} setDiaryData={setDiaryData}/>
       </div>
     </div>
   );
