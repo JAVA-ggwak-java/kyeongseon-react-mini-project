@@ -1,4 +1,14 @@
-.App {
-  
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+@layer base {
+  h1 {
+    @apply text-2xl font-semibold
+    ;
+  }
+  h2 {
+    @apply text-xl;
+  }
+
+}
