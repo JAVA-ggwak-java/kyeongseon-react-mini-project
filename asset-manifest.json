@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/kyeongseon-react-mini-project/static/css/main.e194fd5b.css",
+    "main.js": "/kyeongseon-react-mini-project/static/js/main.941946db.js",
+    "index.html": "/kyeongseon-react-mini-project/index.html",
+    "main.e194fd5b.css.map": "/kyeongseon-react-mini-project/static/css/main.e194fd5b.css.map",
+    "main.941946db.js.map": "/kyeongseon-react-mini-project/static/js/main.941946db.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e194fd5b.css",
+    "static/js/main.941946db.js"
+  ]
+}
